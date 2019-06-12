@@ -10,7 +10,8 @@ bound to.
 * 3. New Binding: Creates an empty object that references the prototype (including properties and method) of another object. 
 The this keyword now refers to the newly created object.
 
-* 4. 
+* 4. Explicit Binding: You can force a function to use a particular object without directly referencing the object. This
+is acheived by using functions such as call, apply and bind.
 *
 * write out a code example of each explanation above
 */
@@ -53,10 +54,6 @@ sentence = function(intro) {
     }
   const johnny = new sentence('Howdy,');
     johnny.say()
-
-}
-
-
 
 
 
