@@ -40,7 +40,6 @@
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
-
 function GameObject(attributes) {
   this.name = attributes.name
   this.createdAt = attributes.createdAt
@@ -76,6 +75,20 @@ Humanoid.prototype.greet = function(attributes) {
   return `${this.name} offers a greeting in ${this.language}.`
 }
 
+
+ function Hero(attributes) {
+  Humanoid.call(this, attributes)
+   this.team = attributes.team
+  this.weapons = attributes.weapons
+  this.language = attributes.language
+ }
+
+ Hero.prototype = Object.create(Humanoid.prototype)
+ Hero.prototype.intro = function() {
+   return ` I am ${this.name} and I will defend the honor of our kingdom with my ${this.weapons}.`
+ }
+
+ 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
 
@@ -129,6 +142,23 @@ Humanoid.prototype.greet = function(attributes) {
     language: 'Elvish',
   });
 
+   const specialist = new Hero({
+     createdAt: new Date(),
+    dimensions: {
+      length: 2,
+       width: 2,
+       height: 2,
+     },
+     healthPoints: 10,
+   name: 'Lord Valor',
+     team: 'The Round Table',
+    weapons: [
+      'Lance',
+       'Flail',
+    ],
+     language: 'Common Tongue',
+   });
+
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
   console.log(swordsman.healthPoints); // 15
@@ -139,9 +169,13 @@ Humanoid.prototype.greet = function(attributes) {
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+  console.log(specialist.intro()); // I am Lord Valor and I will defend the honor of our kingdom with my Lance, Flail
+
+
 
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could 
+  //result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!

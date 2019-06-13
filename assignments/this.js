@@ -61,3 +61,12 @@ sentence = function(intro) {
 // Principle 4
 
 // code example for Explicit Binding
+function School (subject, homework) {
+    this.subject = subject;
+    this.home = homework;
+}
+
+function ExtraCredit() {
+    School.call (subject, homework)
+    
+}
