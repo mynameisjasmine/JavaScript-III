@@ -1,9 +1,11 @@
 /*
-  Object oriented design is commonly used in video games.  For this part of the assignment you will be implementing several constructor functions with their correct inheritance hierarchy.
+  Object oriented design is commonly used in video games.  For this part of the assignment you will be implementing several 
+  constructor functions with their correct inheritance hierarchy.
 
   In this file you will be creating three constructor functions: GameObject, CharacterStats, Humanoid.  
 
-  At the bottom of this file are 3 objects that all end up inheriting from Humanoid.  Use the objects at the bottom of the page to test your constructor functions.
+  At the bottom of this file are 3 objects that all end up inheriting from Humanoid.  Use the objects at the bottom of 
+  the page to test your constructor functions.
   
   Each constructor function has unique properties and methods that are defined in their block comments below:
 */
@@ -38,10 +40,58 @@
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
+function GameObject(attributes) {
+  this.name = attributes.name
+  this.createdAt = attributes.createdAt
+  this.dimensions = attributes.dimensions
+}
+GameObject.prototype.destroy = function() {
+  return `${this.name} was removed from the game.`
+}
 
+
+
+
+function CharacterStats(attributes) {
+  this.healthPoints = attributes.healthPoints
+  GameObject.call(this, attributes)
+}
+
+CharacterStats.prototype = Object.create(GameObject.prototype)
+CharacterStats.prototype.takeDamage = function(attributes) {
+ return `${this.name} took damage.`
+}
+
+function Humanoid(attributes) {
+  CharacterStats.call(this, attributes)
+  this.team = attributes.team
+  this.weapons = attributes.weapons
+  this.language = attributes.language
+  
+}
+
+Humanoid.prototype = Object.create(CharacterStats.prototype)
+Humanoid.prototype.greet = function(attributes) {
+  return `${this.name} offers a greeting in ${this.language}.`
+}
+
+
+ function Hero(attributes) {
+  Humanoid.call(this, attributes)
+   this.team = attributes.team
+  this.weapons = attributes.weapons
+  this.language = attributes.language
+ }
+
+ Hero.prototype = Object.create(Humanoid.prototype)
+ Hero.prototype.intro = function() {
+   return ` I am ${this.name} and I will defend the honor of our kingdom with my ${this.weapons}.`
+ }
+
+ 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -92,6 +142,23 @@
     language: 'Elvish',
   });
 
+   const specialist = new Hero({
+     createdAt: new Date(),
+    dimensions: {
+      length: 2,
+       width: 2,
+       height: 2,
+     },
+     healthPoints: 10,
+   name: 'Lord Valor',
+     team: 'The Round Table',
+    weapons: [
+      'Lance',
+       'Flail',
+    ],
+     language: 'Common Tongue',
+   });
+
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
   console.log(swordsman.healthPoints); // 15
@@ -102,9 +169,13 @@
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+  console.log(specialist.intro()); // I am Lord Valor and I will defend the honor of our kingdom with my Lance, Flail
+
+
+
 
   // Stretch task: 
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
-  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
+  // * Give the Hero and Villains different methods that could be used to remove health points from objects which could 
+  //result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
