@@ -49,7 +49,7 @@ sentence = function(intro) {
     this.intro = intro
     this.say = function() {
       console.log(`${this.intro} my name is ${this.name}`);
-      console.log(this);
+      
     };
     }
   const johnny = new sentence('Howdy,');
