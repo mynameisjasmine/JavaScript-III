@@ -61,12 +61,17 @@ sentence = function(intro) {
 // Principle 4
 
 // code example for Explicit Binding
-function School (subject, homework) {
+function School (subject, color) {
     this.subject = subject;
-    this.home = homework;
-}
+    this.color = color;
+    this.speak = function() {
+   console.log(`My favorite class is ${this.subject} and my favorite color is ${this.color}.`);
+    }
+};
 
-function ExtraCredit() {
-    School.call (subject, homework)
-    
-}
+const firstExample = new School('math', 'blue');
+const secondExample = new School('art', 'purple');
+
+ firstExample.speak();
+ 
+ firstExample.speak.call(secondExample);

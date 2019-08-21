@@ -88,6 +88,20 @@ Humanoid.prototype.greet = function(attributes) {
    return ` I am ${this.name} and I will defend the honor of our kingdom with my ${this.weapons}.`
  }
 
+
+ function Villain(attributes) {
+  Hero.call(this, attributes)
+   this.team = attributes.team
+  this.weapons = attributes.weapons
+  this.language = attributes.language
+ }
+
+ Villain.prototype = Object.create(Hero.prototype)
+ Villain.prototype.battle = function() {
+  //  if(){
+
+  //  }
+ }
  
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
@@ -147,17 +161,34 @@ Humanoid.prototype.greet = function(attributes) {
     dimensions: {
       length: 2,
        width: 2,
-       height: 2,
+       height: 4,
      },
      healthPoints: 10,
-   name: 'Lord Valor',
+     name: 'Lord Valor',
      team: 'The Round Table',
-    weapons: [
-      'Lance',
-       'Flail',
+     weapons: [
+      'Flail',
+       
     ],
      language: 'Common Tongue',
    });
+
+   const assassin = new Villain({
+    createdAt: new Date(),
+   dimensions: {
+     length: 1,
+      width: 2,
+      height: 1,
+    },
+    healthPoints: 10,
+    name: 'Overlord',
+    team: 'Forest Kingdom',
+    weapons: [
+     'Mace',
+      
+   ],
+    language: 'Elvish',
+  });
 
   console.log(mage.createdAt); // Today's date
   console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
