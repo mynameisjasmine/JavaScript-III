@@ -18,7 +18,7 @@ is acheived by using functions such as call, apply and bind.
 
 
 
-// Principle 1
+ // Principle 1
 
 // code example for Window Binding
 let happy = this;
